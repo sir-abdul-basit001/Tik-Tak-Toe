@@ -1,0 +1,196 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #10122a;
+  --panel: #1a1d3d;
+  --panel-border: #2c2f5c;
+  --text: #eceefb;
+  --text-dim: #9297c4;
+  --x-color: #00e5c7;
+  --o-color: #ff5d9e;
+  --win: #ffd166;
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% -10%, #23275a 0%, transparent 55%),
+    radial-gradient(circle at 100% 110%, #341f4a 0%, transparent 55%), var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  padding-bottom: 3rem;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 2.6rem;
+  letter-spacing: 0.02em;
+  padding-top: 2.5rem;
+}
+
+h1 span {
+  background: linear-gradient(90deg, var(--x-color), var(--o-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.container {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.game {
+  width: 70vmin;
+  max-width: 420px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2vmin;
+  padding: 1.5vmin;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 2vmin;
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.box {
+  border-radius: 1.6vmin;
+  border: 1px solid var(--panel-border);
+  height: 18vmin;
+  max-height: 108px;
+  width: 18vmin;
+  max-width: 108px;
+  background: #12142c;
+  color: var(--text);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.box:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--text-dim);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.box:disabled {
+  cursor: default;
+}
+
+.box.win {
+  border-color: var(--win);
+  box-shadow: 0 0 22px rgba(255, 209, 102, 0.55);
+  animation: pulse 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.btn {
+  padding: 1.5vmin 2.2vmin;
+  font-size: 1.1rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  background: linear-gradient(90deg, var(--x-color), var(--o-color));
+  color: #10122a;
+  border-radius: 2vmin;
+  margin-top: 1.8rem;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.msg {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 5vmin;
+  color: var(--text);
+  margin-top: 0.5rem;
+  animation: pop-in 0.35s ease;
+}
+
+@keyframes pop-in {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+footer {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: var(--text-dim);
+  padding: 2vmin;
+  margin-top: 1rem;
+}
+
+/* ---- Falling flowers celebration ---- */
+.flowers {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 50;
+}
+
+.flower {
+  position: absolute;
+  top: -10vh;
+  font-size: 2rem;
+  opacity: 0.9;
+  animation:
+    fall linear forwards,
+    sway ease-in-out infinite;
+  animation-duration: var(--fall-duration), var(--sway-duration);
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(115vh) rotate(360deg);
+  }
+}
+
+@keyframes sway {
+  from {
+    margin-left: -20px;
+  }
+  to {
+    margin-left: 20px;
+  }
+}
